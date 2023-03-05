@@ -18,7 +18,7 @@ public class HellobootApplication {
 //        new Tomcat().start();
         ServletWebServerFactory serverFactory = new TomcatServletWebServerFactory();
         WebServer webServer = serverFactory.getWebServer(servletContext -> {
-            servletContext.addServlet("hello", new HttpServlet() {
+            servletContext.addServlet("front-controller", new HttpServlet() {
                 @Override
                 protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -28,7 +28,7 @@ public class HellobootApplication {
                     resp.setHeader(HttpHeaders.CONTENT_TYPE, MediaType.TEXT_PLAIN_VALUE);
                     resp.getWriter().println("Hello, " + name);
                 }
-            }).addMapping("/hello");
+            }).addMapping("/*");
         });
         webServer.start();
     }
