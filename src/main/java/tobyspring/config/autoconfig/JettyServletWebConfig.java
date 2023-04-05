@@ -1,6 +1,6 @@
 package tobyspring.config.autoconfig;
 
-import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
+import org.springframework.boot.web.embedded.jetty.JettyServletWebServerFactory;
 import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Condition;
@@ -8,22 +8,22 @@ import org.springframework.context.annotation.ConditionContext;
 import org.springframework.context.annotation.Conditional;
 import org.springframework.core.type.AnnotatedTypeMetadata;
 import tobyspring.config.MyAutoConfiguration;
-import tobyspring.config.autoconfig.TomcatServletWebConfig.TomcatCondition;
+import tobyspring.config.autoconfig.JettyServletWebConfig.JettyCondition;
 
 @MyAutoConfiguration
-@Conditional(TomcatCondition.class)
-public class TomcatServletWebConfig {
+@Conditional(JettyCondition.class)
+public class JettyServletWebConfig {
 
-    @Bean("tomcatWebServerFactory")
+    @Bean("jettyWebServerFactory")
     public ServletWebServerFactory serverFactory() {
-        return new TomcatServletWebServerFactory();
+        return new JettyServletWebServerFactory();
     }
 
-    static class TomcatCondition implements Condition {
+    static class JettyCondition implements Condition {
 
         @Override
         public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
-            return false;
+            return true;
         }
     }
 }
