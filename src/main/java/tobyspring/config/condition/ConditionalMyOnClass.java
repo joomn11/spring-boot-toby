@@ -1,4 +1,4 @@
-package tobyspring.config;
+package tobyspring.config.condition;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
