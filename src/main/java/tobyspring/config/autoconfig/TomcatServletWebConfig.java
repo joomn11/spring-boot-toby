@@ -12,10 +12,18 @@ import tobyspring.config.condition.ConditionalMyOnClass;
 @ConditionalMyOnClass("org.apache.catalina.startup.Tomcat")
 public class TomcatServletWebConfig {
 
+//    @Value("${contextPath}")
+//    String contextPath;
+
     @Bean("tomcatWebServerFactory")
     @ConditionalOnMissingBean
-    public ServletWebServerFactory serverFactory() {
-        return new TomcatServletWebServerFactory();
+    public ServletWebServerFactory serverFactory(ServerProperties properties) {
+        TomcatServletWebServerFactory factory = new TomcatServletWebServerFactory();
+//        factory.setContextPath(env.getProperty("contextPath"));
+//        factory.setContextPath(this.contextPath);
+        factory.setContextPath(properties.getContextPath());
+        factory.setPort(properties.getPort());
+        return factory;
     }
 
     /*
