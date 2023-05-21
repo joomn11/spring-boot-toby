@@ -6,10 +6,13 @@ import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 import tobyspring.config.MyAutoConfiguration;
 import tobyspring.config.condition.ConditionalMyOnClass;
+import tobyspring.config.property.EnableMyConfigurationProperties;
 
 @MyAutoConfiguration
 //@Conditional(TomcatCondition.class)
 @ConditionalMyOnClass("org.apache.catalina.startup.Tomcat")
+//@Import(ServerProperties.class)
+@EnableMyConfigurationProperties(element = ServerProperties.class)
 public class TomcatServletWebConfig {
 
 //    @Value("${contextPath}")
